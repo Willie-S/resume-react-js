@@ -37,7 +37,7 @@ function App() {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <NavigationBar />
-            <div style={{ marginLeft: "250px", padding: "20px" }}>
+            <div style={{ marginLeft: "250px" }}>
                 <Home />
                 <About />
                 <Projects />
