@@ -1,0 +1,8 @@
+{
+    "plugins": [
+       
+    ],
+    "extends": [
+        "react-app"
+    ]
+}

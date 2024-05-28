@@ -1,22 +1,27 @@
-// src/components/NavigationBar.jsx
 import React, { useState, useEffect, useRef } from "react";
 import {
+    AppBar,
+    Box,
+    Button,
+    Divider,
     Drawer,
+    IconButton,
     List,
     ListItem,
     ListItemText,
-    Divider,
-    Button,
-    AppBar,
     Toolbar,
-    IconButton,
+    Typography,
     useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/logos/logo.png";
+import { PAGE_SECTIONS, PROFILE_DETAILS } from "../constants/appData";
 
-const NavigationBar = () => {
-    const sections = ["Home", "About", "Projects", "Contact"];
+const drawerWidth = 250;
+
+const NavigationBar = (props) => {
+    const theme = useTheme();
     const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
     const [mobileOpen, setMobileOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
@@ -33,14 +38,14 @@ const NavigationBar = () => {
         let currentSection = "";
         lastScrollY.current = currentScrollY;
 
-        sections.map(s => s.toLowerCase()).forEach((section) => {
-            const element = document.getElementById(section);
+        PAGE_SECTIONS.map(s => s.id).forEach((sectionId) => {
+            const element = document.getElementById(sectionId);
             if (element) {
                 const { offsetTop, offsetHeight } = element;
                 const threshold = isScrollingDown ? offsetHeight / 3 : offsetHeight * 2 / 3;
 
                 if (currentScrollY >= offsetTop - threshold && currentScrollY < offsetTop + offsetHeight - threshold) {
-                    currentSection = section;
+                    currentSection = sectionId;
                 }
             }
         });
@@ -58,29 +63,45 @@ const NavigationBar = () => {
 
     const drawer = (
         <>
-            <div style={{ padding: "10px", textAlign: "center" }} onClick={() => { window.location.href = "/"}} >
-                <img src={logo} alt="Logo" style={{ width: "100%" }} />
-            </div>
+            <Box
+                onClick={() => { window.location.href = "/"}}
+                sx={{
+                    padding: "1rem",
+                    display: isMobile ? "none" : "flex",
+                    flexDirection: "column",
+                    gap: 1,
+                    alignItems: "center"
+                }}
+            >
+                <img src={logo} alt="Logo" style={{ width: "80%" }} />
+                <Box>
+                    <Typography component="p" variant="overline" textAlign="center" sx={{ color: theme.palette.background.light, lineHeight: "normal" }}>
+                        <strong>{PROFILE_DETAILS.fullName}</strong>
+                    </Typography>
+                    <Typography component="p" variant="caption" textAlign="center" sx={{color: theme.palette.background.light}}>
+                        <strong>{PROFILE_DETAILS.occupation}</strong>
+                    </Typography>
+                </Box>
+            </Box>
+            
             <Divider />
+
             <List>
-                {sections.map((text) => (
+                {PAGE_SECTIONS.map((section) => (
                     <ListItem
                         button
-                        key={text.toLowerCase()}
+                        key={section.id}
                         component="a"
-                        href={`/#${text.toLowerCase()}`}
-                        sx={{
-                            backgroundColor: activeSection === text.toLowerCase() ? "rgba(255, 165, 0, 0.5)" : "transparent",
-                            "&:hover": {
-                                backgroundColor: "rgba(255, 165, 0, 0.5)",
-                            },
-                        }}
+                        href={`/#${section.id}`}
+                        className={activeSection === section.id ? "active" : ""}
                     >
-                        <ListItemText primary={text} />
+                        <ListItemText primary={section.displayText} />
                     </ListItem>
                 ))}
             </List>
+
             <Divider />
+
             <Button variant="contained" color="primary" sx={{ margin: "10px" }}>
                 Download CV
             </Button>
@@ -93,7 +114,7 @@ const NavigationBar = () => {
                 <>
                     <AppBar position="fixed">
                         <Toolbar>
-                            <img src={logo} alt="Logo" style={{ width: 40, marginRight: "auto" }} />
+                            <img src={logo} alt="Logo" style={{ width: 80, marginRight: "auto" }} />
                             <IconButton
                                 edge="end"
                                 color="inherit"
@@ -108,13 +129,6 @@ const NavigationBar = () => {
                         anchor="right"
                         open={mobileOpen}
                         onClose={handleDrawerToggle}
-                        sx={{
-                            "& .MuiDrawer-paper": {
-                                width: 250,
-                                background: "#2B2E3B",
-                                color: "#d9d9d9",
-                            },
-                        }}
                     >
                         {drawer}
                     </Drawer>
@@ -123,18 +137,15 @@ const NavigationBar = () => {
                 <Drawer
                     variant="permanent"
                     sx={{
-                        width: 250,
-                        flexShrink: 0,
-                        "& .MuiDrawer-paper": {
-                            width: 250,
-                            background: "#2B2E3B",
-                            color: "#d9d9d9",
-                        },
+                        flexShrink: 0
                     }}
                 >
                     {drawer}
                 </Drawer>
             )}
+            <Box sx={{marginLeft: `${drawerWidth}px`}}>
+                {props.children}
+            </Box>
         </>
     );
 };
