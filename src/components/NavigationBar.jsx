@@ -15,8 +15,8 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import logo from "../assets/logos/logo.png";
 import { PAGE_SECTIONS, PROFILE_DETAILS } from "../constants/appData";
+import logo from "../assets/logos/logo.png";
 
 const drawerWidth = 250;
 

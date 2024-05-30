@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import BackgroundImg from "../assets/images/background_3.jpg";
 //import HeroImg from "../assets/images/chat_bubble.png";
 import ProfileImg from "../assets/avatars/cartooned_profile_cropped.png";
+import "../index.css";
 
 const Home = () => {
     const theme = useTheme();
@@ -39,9 +40,10 @@ const Home = () => {
                 <Box sx={{
                     width: "100%",
                     display: "flex",
-                    justifyContent: "space-between"
+                    justifyContent: "space-between",
+                    animation: 'fallAndBounce 2s ease 0s 1 normal forwards',
                 }}>
-                    <Box width="49%" p={1}>
+                    <Box width="49%" p={2}>
                         <Typography component="h1" variant="h2" textAlign="left" sx={{color: titleColor, 
                         textShadow: `0 0 15px ${accentColor}`,}} gutterBottom>
                             <span style={{color: accentColor}}>{'<'}</span>developer<span style={{color: accentColor}}>{'>'}</span>
@@ -50,7 +52,7 @@ const Home = () => {
                             Fullstack web developer speciallising in SDLC from concept to production
                         </Typography>
                     </Box>
-                    <Box width="49%" p={1}>
+                    <Box width="49%" p={2}>
                         <Typography component="h1" variant="h2" textAlign="right" sx={{color: titleColor, textShadow: `0 0 15px ${accentColor}`}} gutterBottom>
                             <span style={{color: accentColor}}>{'<'}</span>engineer<span style={{color: accentColor}}>{'>'}</span>
                         </Typography>

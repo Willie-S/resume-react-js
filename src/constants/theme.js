@@ -63,19 +63,18 @@ const customTheme = createTheme({
                 root: {
                     "&.active": {
                         color: neonOrange,
-                        textShadow: `0 0 15px ${neonOrange}`,
-                        // animation: 'pulsingTextShadow 2s infinite',
-                        // '@keyframes pulsingTextShadow': {
-                        //     '0%': {
-                        //         textShadow: '0 0 5px rgba(0, 0, 0, 0.5)',
-                        //     },
-                        //     '50%': {
-                        //         textShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
-                        //     },
-                        //     '100%': {
-                        //         textShadow: '0 0 5px rgba(0, 0, 0, 0.5)',
-                        //     },
-                        // },
+                        animation: 'pulsingTextShadow 2s infinite ease',
+                        '@keyframes pulsingTextShadow': {
+                            '0%': {
+                                textShadow: `0 0 0 ${neonOrange}`,
+                            },
+                            '50%': {
+                                textShadow: `0 0 20px ${neonOrange}`,
+                            },
+                            '100%': {
+                                textShadow: `0 0 0 ${neonOrange}`,
+                            },
+                        },
                     },
                     "&:hover": {
                         backgroundColor: `${neonOrange}80`,
