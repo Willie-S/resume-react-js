@@ -67,13 +67,13 @@ const NavigationBar = (props) => {
                 onClick={() => { window.location.href = "/"}}
                 sx={{
                     padding: "1rem",
-                    display: isMobile ? "none" : "flex",
+                    display: "flex",
                     flexDirection: "column",
                     gap: 1,
                     alignItems: "center"
                 }}
             >
-                <img src={logo} alt="Logo" style={{ width: "80%" }} />
+                <img src={logo} alt="Logo" style={{ width: "80%", display: isMobile ? "none" : "block", }} />
                 <Box>
                     <Typography component="p" variant="overline" textAlign="center" sx={{ color: theme.palette.background.light, lineHeight: "normal" }}>
                         <strong>{PROFILE_DETAILS.fullName}</strong>
@@ -114,7 +114,7 @@ const NavigationBar = (props) => {
                 <>
                     <AppBar position="fixed">
                         <Toolbar>
-                            <img src={logo} alt="Logo" style={{ width: 80, marginRight: "auto" }} />
+                            <img src={logo} alt="Logo" style={{ width: 80, padding: "10px", marginRight: "auto" }} />
                             <IconButton
                                 edge="end"
                                 color="inherit"
@@ -143,7 +143,10 @@ const NavigationBar = (props) => {
                     {drawer}
                 </Drawer>
             )}
-            <Box sx={{marginLeft: `${drawerWidth}px`}}>
+            <Box sx={{
+                marginLeft: `${!isMobile ? drawerWidth : 0}px`,
+                marginTop: `${isMobile ? 5 : 0}rem`
+            }}>
                 {props.children}
             </Box>
         </>

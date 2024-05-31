@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 const grey = "#3D404F";
 const lightGrey = "#717e85";
@@ -82,7 +82,20 @@ const customTheme = createTheme({
                 },
             },
         },
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    "&.sectionTitle": {
+                        textAlign: "center",
+                        textTransform: "uppercase",
+                        width: "fit-content",
+                        padding: "0 20px 10px 20px",
+                        borderBottom: `1px solid ${neonOrange}`
+                    }
+                }
+            }
+        }
     },
 });
 
-export default customTheme;
+export default responsiveFontSizes(customTheme);
