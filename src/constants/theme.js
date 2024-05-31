@@ -90,7 +90,9 @@ const customTheme = createTheme({
                         textTransform: "uppercase",
                         width: "fit-content",
                         padding: "0 20px 10px 20px",
-                        borderBottom: `1px solid ${neonOrange}`
+                        borderBottom: `1px solid ${neonOrange}`,
+                        //color: blueGreyDark,
+                        textShadow: `0 0 20px ${neonOrange}`
                     }
                 }
             }
