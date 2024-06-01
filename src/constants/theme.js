@@ -49,6 +49,27 @@ const customTheme = createTheme({
                 },
             },
         },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: blueGreyDark,
+                    backgroundImage: "none",
+                    color: offWhite,
+                    textAlign: 'center',
+                    borderRadius: '2rem',
+                    boxShadow: `2px 5px 5px ${neonOrange}40`,
+                    transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)', 
+                    '& .icon': {
+                        fontSize: '60px',
+                        marginBottom: '10px',
+                        //color: neonOrange
+                    },
+                    '&:hover': {
+                        transform: 'scale(1.05)', 
+                    },
+                },
+            },
+        },
         MuiDrawer: {
             styleOverrides: {
                 paper: {
@@ -93,6 +114,9 @@ const customTheme = createTheme({
                         borderBottom: `1px solid ${neonOrange}`,
                         //color: blueGreyDark,
                         textShadow: `0 0 20px ${neonOrange}`
+                    },
+                    "&.sectionHeading": {
+                        color: neonOrange,
                     }
                 }
             }
