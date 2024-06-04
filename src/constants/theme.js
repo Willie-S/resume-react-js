@@ -70,6 +70,14 @@ const customTheme = createTheme({
                 },
             },
         },
+        MuiDialog: {
+            styleOverrides: {
+                paper: {
+                    backgroundColor: blueGrey,
+                    borderRadius: '1rem',
+                },
+            },
+        },
         MuiDrawer: {
             styleOverrides: {
                 paper: {
@@ -103,6 +111,39 @@ const customTheme = createTheme({
                 },
             },
         },
+        MuiTable: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: blueGreyDark,
+                },
+            },
+        },
+        MuiTableRow: {
+            styleOverrides: {
+                root: {
+                    "& > .MuiTableCell-root": {
+                        borderBottomColor: blueGreyLight,
+                    },
+                    "& > .MuiTableCell-head": {
+                        borderBottomColor: `${neonOrange}40`,
+                    },
+                },
+            },
+        },
+        MuiTableCell: {
+            styleOverrides: {
+                root: {
+                    "&.noWrap": {
+                        whiteSpace: "nowrap",
+                    }
+                },
+                head: {
+                    textAlign: "center",
+                    color: neonOrange,
+                    fontWeight: 600,
+                }
+            }
+        },
         MuiTypography: {
             styleOverrides: {
                 root: {
@@ -120,7 +161,7 @@ const customTheme = createTheme({
                     }
                 }
             }
-        }
+        },
     },
 });
 

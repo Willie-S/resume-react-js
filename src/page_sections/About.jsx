@@ -1,18 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { Box, Card, CardContent, Grid, Typography, useTheme } from "@mui/material";
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    Dialog,
+    DialogContent,
+    DialogActions,
+    Grid,
+    Link,
+    Paper,
+    Table,
+    TableBody,
+    TableHead,
+    TableCell,
+    TableRow,
+    TableContainer,
+    Typography,
+    useTheme,
+} from "@mui/material";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import SchoolIcon from "@mui/icons-material/School";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
-import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import { PROFILE_DETAILS } from "../constants/appData";
 import ProfileImg from "../assets/avatars/real_profile.png";
+import SkillPercentageComp from "../components/SkillPercentageComp";
 
 const About = () => {
     const theme = useTheme();
     const [visibleKeywords, setVisibleKeywords] = useState([]);
+    const [openCriteria, setOpenCriteria] = useState(false);
+    const [openProficiency, setOpenProficiency] = useState(false);
 
-/*
+    const handleOpenCriteria = () => {
+        setOpenCriteria(true);
+    };
+
+    const handleCloseCriteria = () => {
+        setOpenCriteria(false);
+    };
+
+    const handleOpenProficiency = () => {
+        setOpenProficiency(true);
+    };
+
+    const handleCloseProficiency = () => {
+        setOpenProficiency(false);
+    };
+
+    /*
     Perhaps use the animationend event:
     useEffect(() => {
         const handleAnimationEnd = (event) => {
@@ -119,7 +155,7 @@ const About = () => {
 
             {/* Bio container */}
             <Box
-                my={4}
+                my={5}
                 sx={{
                     display: "flex",
                     justifyContent: "center",
@@ -163,9 +199,10 @@ const About = () => {
                 {visibleKeywords.map((keyword, index) => (
                     <Typography
                         key={index}
+                        className="sectionHeading"
                         sx={{
                             //position: 'absolute',
-                            animation: `flyInOut ${1 * 3 + ((2 - index) * 0.5)}s ease ${index * 0.5}s infinite`,
+                            animation: `flyInOut ${1 + ((visibleKeywords.length - 1) * 0.5 - (index * 0.5))}s ease ${index * 0.5}s infinite`,
                             
                         }}
                         textAlign="center"
@@ -174,6 +211,189 @@ const About = () => {
                     </Typography>
                 ))}
             </Box> */}
+
+            <Box sx={{ margin: "0 auto" }}>
+                <Typography
+                    component="h3"
+                    variant="h5"
+                    className="sectionHeading"
+                    textAlign="center"
+                >
+                    Skills Matrix
+                </Typography>
+                <Typography component="p" variant="body1" my={2}>
+                    Below are my self-assessed
+                    <Link
+                        component="button"
+                        variant="body1"
+                        onClick={handleOpenProficiency}
+                        sx={{ color: "primary.main", textTransform: "none", mx: 0.5 }}
+                    >
+                        proficiency levels
+                    </Link>
+                    for various technologies I have experience in. To ensure objectivity, I have
+                    evaluated each skill based on a consistent set of
+                    <Link
+                        component="button"
+                        variant="body1"
+                        onClick={handleOpenCriteria}
+                        sx={{ color: "primary.main", textTransform: "none", ml: 0.5 }}
+                    >
+                        criteria.
+                    </Link>
+                </Typography>
+                <Grid container spacing={2} alignItems="center">
+                    {PROFILE_DETAILS.skills
+                        .sort((a, b) => a.category.order - b.category.order || a.skillName.localeCompare(b.skillName))
+                        .reduce((acc, skill, index, array) => {
+                            if (index === 0 || skill.category.name !== array[index - 1].category.name) {
+                                acc.push(
+                                    <Grid key={skill.category.name} item xs={12}>
+                                        <Typography component="h6" variant="overline" textAlign="center">
+                                            {skill.category.name}
+                                        </Typography>
+                                    </Grid>
+                                );
+                            }
+                            acc.push(
+                                <Grid key={skill.skillName} item xs={12} md={6}>
+                                    <SkillPercentageComp
+                                        skillName={skill.skillName}
+                                        skillPercentage={skill.skillPercentage}
+                                    />
+                                </Grid>
+                            );
+                            return acc;
+                        }, [])
+                    }
+                </Grid>
+            </Box>
+
+            {/* Modal for Criteria */}
+            <Dialog open={openCriteria} onClose={handleCloseCriteria} maxWidth="md" fullWidth>
+                <DialogContent dividers>
+                    <TableContainer component={Paper}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Criteria</TableCell>
+                                    <TableCell>Description</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>Years of Experience</TableCell>
+                                    <TableCell>
+                                        How long have you been working with the technology?
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Project Complexity</TableCell>
+                                    <TableCell>
+                                        What types of projects have you completed using the
+                                        technology? Consider the complexity and scope.
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Frequency of Use</TableCell>
+                                    <TableCell>
+                                        How often do you use the technology in your daily work?
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Depth of Knowledge</TableCell>
+                                    <TableCell>
+                                        How well do you understand the core concepts and advanced
+                                        features?
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Problem-Solving Ability</TableCell>
+                                    <TableCell>
+                                        Can you solve complex problems and troubleshoot issues
+                                        independently?
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Community Contribution</TableCell>
+                                    <TableCell>
+                                        Have you contributed to the technology’s community, such as
+                                        through openCriteria-source projects, forums, or tutorials?
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseCriteria}>Close</Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Modal for Proficiency */}
+            <Dialog open={openProficiency} onClose={handleCloseProficiency} maxWidth="md" fullWidth>
+                <DialogContent dividers>
+                    <TableContainer component={Paper}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Level</TableCell>
+                                    <TableCell>Proficiency</TableCell>
+                                    <TableCell>Description</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell className="noWrap">1 - 20%</TableCell>
+                                    <TableCell>Novice</TableCell>
+                                    <TableCell>
+                                        Just started learning the technology. Basic understanding
+                                        and ability to write simple code.
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell className="noWrap">21 - 40%</TableCell>
+                                    <TableCell>Beginner</TableCell>
+                                    <TableCell>
+                                        Some experience with the technology. Can write more complex
+                                        code but still relies heavily on documentation and guidance.
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell className="noWrap">41 - 60%</TableCell>
+                                    <TableCell>Intermediate</TableCell>
+                                    <TableCell>
+                                        Comfortable with the technology. Can build complete
+                                        applications, solve most problems independently, and
+                                        understand core concepts well.
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell className="noWrap">61 - 80%</TableCell>
+                                    <TableCell>Advanced</TableCell>
+                                    <TableCell>
+                                        Extensive experience with the technology. Can optimize and
+                                        refactor code, understands advanced concepts, and can mentor
+                                        others.
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell className="noWrap">81 - 100%</TableCell>
+                                    <TableCell>Expert</TableCell>
+                                    <TableCell>
+                                        Deep expertise and mastery. Can design and architect complex
+                                        systems, contribute to the technology's community, and
+                                        innovate within the field.
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseProficiency}>Close</Button>
+                </DialogActions>
+            </Dialog>
         </section>
     );
 };

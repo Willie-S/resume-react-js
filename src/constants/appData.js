@@ -47,5 +47,30 @@ export const PROFILE_DETAILS = {
         names: [
             "course 1"
         ]
-    }
+    },
+    skills: [
+        { skillName: "React", skillPercentage: 65, category: { order: 1, name: "Frontend" } },
+        { skillName: "Material UI", skillPercentage: 65, category: { order: 1, name: "Frontend" } },
+        { skillName: "Typescript", skillPercentage: 45, category: { order: 1, name: "Frontend" } },
+        { skillName: "JavaScript", skillPercentage: 75, category: { order: 1, name: "Frontend" } },
+        { skillName: "HTML & CSS", skillPercentage: 70, category: { order: 1, name: "Frontend" } },
+        { skillName: "AngularJS", skillPercentage: 40, category: { order: 1, name: "Frontend" } },
+        { skillName: "Bootstrap", skillPercentage: 40, category: { order: 1, name: "Frontend" } },
+        { skillName: "C#", skillPercentage: 85, category: { order: 2, name: "Backend" } },
+        { skillName: ".Net Framework", skillPercentage: 80, category: { order: 2, name: "Backend" } },
+        { skillName: "ASP.Net", skillPercentage: 75, category: { order: 2, name: "Backend" } },
+        { skillName: "Restful API", skillPercentage: 75, category: { order: 2, name: "Backend" } },
+        { skillName: "Entity Framework", skillPercentage: 70, category: { order: 2, name: "Backend" } },
+        { skillName: "SQL Server", skillPercentage: 70, category: { order: 2, name: "Backend" } },
+        { skillName: "S3 (AWS)", skillPercentage: 60, category: { order: 3, name: "Cloud Services" } },
+        { skillName: "CloudFront (AWS)", skillPercentage: 60, category: { order: 3, name: "Cloud Services" } },
+        { skillName: "CodeBuild (AWS)", skillPercentage: 60, category: { order: 3, name: "Cloud Services" } },
+        { skillName: "Azure", skillPercentage: 60, category: { order: 3, name: "Cloud Services" } },
+        { skillName: "Unit/Integration Tests", skillPercentage: 35, category: { order: 5, name: "Other" } },
+        { skillName: "WPF", skillPercentage: 20, category: { order: 1, name: "Frontend" } },
+        { skillName: "MVC", skillPercentage: 20, category: { order: 5, name: "Other" } },
+        { skillName: "MVVM", skillPercentage: 20, category: { order: 5, name: "Other" } },
+        { skillName: "Xamarin", skillPercentage: 15, category: { order: 4, name: "Mobile" } },
+        { skillName: "SQLite", skillPercentage: 15, category: { order: 4, name: "Mobile" } }
+    ]
 }
