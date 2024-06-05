@@ -1,9 +1,15 @@
 import { Typography } from "@mui/material";
 
-const SectionHeading = ({ title, ...props }) => {
+const SectionHeading = ({ heading, ...props }) => {
     return (
-        <Typography component="h2" variant="h4" className="sectionTitle">
-            {title}
+        <Typography
+            component="h3"
+            variant="h5"
+            className="sectionHeading"
+            textAlign="center"
+            {...props}
+        >
+            {heading}
         </Typography>
     );
 };

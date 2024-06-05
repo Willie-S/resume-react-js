@@ -1,16 +1,12 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
-const SectionTitle = ({ heading, ...props }) => {
+const SectionTitle = ({ title, ...props }) => {
     return (
-        <Typography
-            component="h3"
-            variant="h5"
-            className="sectionHeading"
-            textAlign="center"
-            {...props}
-        >
-            {heading}
-        </Typography>
+        <Box sx={{ textAlign: "-webkit-center" }}>
+            <Typography component="h2" variant="h4" className="sectionTitle">
+                {title}
+            </Typography>
+        </Box>
     );
 };
 

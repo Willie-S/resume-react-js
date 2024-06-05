@@ -1,4 +1,5 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { createBreakpoints } from "@mui/system";
 
 const grey = "#3D404F";
 const lightGrey = "#717e85";
@@ -9,6 +10,8 @@ const offWhite = "#d9d9d9";
 const neonOrange = "#ffa500";
 const neonOrangeDark = "#cc8400";
 const neonOrangeLight = "#ffb732";
+
+const breakpoints = createBreakpoints({});
 
 const customTheme = createTheme({
     palette: {
@@ -66,6 +69,49 @@ const customTheme = createTheme({
                     },
                     "&:hover": {
                         transform: "scale(1.05)",
+                    },
+                    "&.projectCard": {
+                        display: "flex",
+                        flexDirection: "row",
+                        aspectRatio: 10 / 3,
+                        [breakpoints.down("md")]: {
+                            flexDirection: "column !important",
+                            aspectRatio: "auto",
+                        },
+                        "& .backgroundImage": {
+                            transition: "transform 0.3s ease-in-out",
+                            width: "50%",
+                            aspectRatio: 2,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                            [breakpoints.down("md")]: {
+                                width: "100%",
+                            },
+                        },
+                        "&:hover": {
+                            transform: "none",
+                            "&:hover .backgroundImage": {
+                                transform: "scale(1.1)",
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        MuiCardContent: {
+            styleOverrides: {
+                root: {
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    backgroundColor: "inherit !important",
+                    "&.projectCard": {
+                        width: "50%",
+                        [breakpoints.down("md")]: {
+                            width: "100%",
+                        },
                     },
                 },
             },

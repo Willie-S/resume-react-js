@@ -6,7 +6,7 @@ import Projects from "../page_sections/Projects";
 import { getNumYears } from "../utilities/generalHelper";
 import LogoImg from "../assets/logos/logo.png";
 import ResumeCardImg from "../assets/images/resume_card.png";
-import ResumePreviewImg from "../assets/images/background_5.jpg";
+import ResumePreviewImg from "../assets/images/resume_preview.png";
 
 export const PAGE_SECTIONS = [
     {
@@ -105,7 +105,22 @@ export const PROFILE_DETAILS = {
             descShort: "A personal portfolio site written in ReactJS with Material-UI",
             descriptions: [
                 "Well, you know, it's this exact application...",
-                "It's a single-page ReactJS web application built with Material UI to build up my portfolio as a software developer. This application fully utilizes MUI's theme context to keep the UI elements consistent throughout the application which promotes maintainability. Also, I'm a big fan of re-using components, so if anything is used more than once, it's moved into its own functional React component.",
+                "It's a single-page ReactJS web application built with Material UI to build up my portfolio as a software developer.",
+                "At the time of its creation, it's purely a frontend application with static assets and profile details. However, to showcase my abilities as a fullstack developer (as advertised), I will be moving all the static details into a database and create a backend API to fetch the data.",
+            ],
+            url: "https://localhost:3000",
+            repoUrl: "https://github.com/Willie-S/resume-react-js",
+            repoIcon: <GitHubIcon />,
+            cardBackgroundImg: ResumeCardImg,
+            logoImg: LogoImg,
+            previewImg: ResumePreviewImg,
+        },
+        {
+            projectName: "Resumé ME",
+            descShort: "A personal portfolio site written in ReactJS with Material-UI",
+            descriptions: [
+                "Well, you know, it's this exact application...",
+                "It's a single-page ReactJS web application built with Material UI to build up my portfolio as a software developer.",
                 "At the time of its creation, it's purely a frontend application with static assets and profile details. However, to showcase my abilities as a fullstack developer (as advertised), I will be moving all the static details into a database and create a backend API to fetch the data.",
             ],
             url: "https://localhost:3000",
