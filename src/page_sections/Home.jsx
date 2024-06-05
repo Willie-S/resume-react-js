@@ -10,7 +10,7 @@ const Home = () => {
     const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
     const backdropColor = theme.palette.secondary.light;
     const titleColor = theme.palette.text.secondary;
-    const shadowColor = "#000";
+    const shadowColor = "#000"; // Background's darker shade is not prominent enough
     const accentColor = theme.palette.text.accent;
 
     return (
@@ -28,6 +28,7 @@ const Home = () => {
                 justifyContent: "flex-start",
             }}
         >
+            {/* Central bottom image */}
             <Box
                 sx={{
                     height: "50%",
@@ -36,6 +37,8 @@ const Home = () => {
             >
                 <img alt="Profile" src={ProfileImg} width="100%" />
             </Box>
+
+            {/* Text containers */}
             <Box
                 sx={{
                     width: "100%",
@@ -46,6 +49,7 @@ const Home = () => {
                     animation: "fallAndBounce 2s ease 0s 1 normal forwards",
                 }}
             >
+                {/* Left-hand (upper) text */}
                 <Box flex="1" minWidth="300px" p={2}>
                     <Typography
                         component="h1"
@@ -66,6 +70,8 @@ const Home = () => {
                         Fullstack web developer speciallising in SDLC from concept to production
                     </Typography>
                 </Box>
+
+                {/* Right-hand (lower) text */}
                 <Box flex="1" minWidth="300px" p={2}>
                     <Typography
                         component="h1"

@@ -9,9 +9,7 @@ function App() {
     return (
         <ThemeProvider theme={customTheme}>
             <CssBaseline />
-            <NavigationBar>
-                {[...PAGE_SECTIONS.map(section => section.component)]}
-            </NavigationBar>
+            <NavigationBar>{[...PAGE_SECTIONS.map((section) => section.component)]}</NavigationBar>
         </ThemeProvider>
     );
 }

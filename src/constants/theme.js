@@ -15,24 +15,24 @@ const customTheme = createTheme({
         mode: "dark",
         background: {
             default: grey,
-            light: lightGrey
+            light: lightGrey,
         },
         text: {
             primary: offWhite,
             secondary: blueGreyDark,
             accent: neonOrange,
-            emphasis: blueGreyLight
+            emphasis: blueGreyLight,
         },
         primary: {
             main: neonOrange,
             dark: neonOrangeDark,
-            light: neonOrangeLight
+            light: neonOrangeLight,
         },
         secondary: {
             main: blueGrey,
             dark: blueGreyDark,
-            light: blueGreyLight
-        }
+            light: blueGreyLight,
+        },
     },
     components: {
         MuiButton: {
@@ -55,17 +55,17 @@ const customTheme = createTheme({
                     backgroundColor: blueGreyDark,
                     backgroundImage: "none",
                     color: offWhite,
-                    textAlign: 'center',
-                    borderRadius: '2rem',
+                    textAlign: "center",
+                    borderRadius: "2rem",
                     boxShadow: `2px 5px 5px ${neonOrange}40`,
-                    transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)', 
-                    '& .icon': {
-                        fontSize: '60px',
-                        marginBottom: '10px',
+                    transition: "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                    "& .icon": {
+                        fontSize: "60px",
+                        marginBottom: "10px",
                         //color: neonOrange
                     },
-                    '&:hover': {
-                        transform: 'scale(1.05)', 
+                    "&:hover": {
+                        transform: "scale(1.05)",
                     },
                 },
             },
@@ -74,7 +74,7 @@ const customTheme = createTheme({
             styleOverrides: {
                 paper: {
                     backgroundColor: blueGrey,
-                    borderRadius: '1rem',
+                    borderRadius: "1rem",
                 },
             },
         },
@@ -92,15 +92,15 @@ const customTheme = createTheme({
                 root: {
                     "&.active": {
                         color: neonOrange,
-                        animation: 'pulsingTextShadow 2s infinite ease',
-                        '@keyframes pulsingTextShadow': {
-                            '0%': {
+                        animation: "pulsingTextShadow 2s infinite ease",
+                        "@keyframes pulsingTextShadow": {
+                            "0%": {
                                 textShadow: `0 0 0 ${neonOrange}`,
                             },
-                            '50%': {
+                            "50%": {
                                 textShadow: `0 0 20px ${neonOrange}`,
                             },
-                            '100%': {
+                            "100%": {
                                 textShadow: `0 0 0 ${neonOrange}`,
                             },
                         },
@@ -135,14 +135,14 @@ const customTheme = createTheme({
                 root: {
                     "&.noWrap": {
                         whiteSpace: "nowrap",
-                    }
+                    },
                 },
                 head: {
                     textAlign: "center",
                     color: neonOrange,
                     fontWeight: 600,
-                }
-            }
+                },
+            },
         },
         MuiTypography: {
             styleOverrides: {
@@ -154,13 +154,13 @@ const customTheme = createTheme({
                         padding: "0 20px 10px 20px",
                         borderBottom: `1px solid ${neonOrange}`,
                         //color: blueGreyDark,
-                        textShadow: `0 0 20px ${neonOrange}`
+                        textShadow: `0 0 20px ${neonOrange}`,
                     },
                     "&.sectionHeading": {
                         color: neonOrange,
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
     },
 });

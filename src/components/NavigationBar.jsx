@@ -31,20 +31,33 @@ const NavigationBar = (props) => {
         setMobileOpen(!mobileOpen);
     };
 
+    const handleCvDownload = () => {
+        console.log("download CV");
+    };
+
     const handleScroll = () => {
+        /*/
+            Set active navigation link based on scrolling up or down. A section is marked active 
+            as soon as a third of its contents come into view. When scrolling down, the top 33% 
+            of the next section needs to be visible for it to be marked active. when scrolling up, 
+            the bottom 33% of the previous section needs to be visible for it to be marked active
+        /*/
         const currentScrollY = window.scrollY;
         const isScrollingDown = currentScrollY > lastScrollY.current;
 
         let currentSection = "";
         lastScrollY.current = currentScrollY;
 
-        PAGE_SECTIONS.map(s => s.id).forEach((sectionId) => {
+        PAGE_SECTIONS.map((s) => s.id).forEach((sectionId) => {
             const element = document.getElementById(sectionId);
             if (element) {
                 const { offsetTop, offsetHeight } = element;
-                const threshold = isScrollingDown ? offsetHeight / 3 : offsetHeight * 2 / 3;
+                const threshold = isScrollingDown ? offsetHeight / 3 : (offsetHeight * 2) / 3;
 
-                if (currentScrollY >= offsetTop - threshold && currentScrollY < offsetTop + offsetHeight - threshold) {
+                if (
+                    currentScrollY >= offsetTop - threshold &&
+                    currentScrollY < offsetTop + offsetHeight - threshold
+                ) {
                     currentSection = sectionId;
                 }
             }
@@ -54,38 +67,61 @@ const NavigationBar = (props) => {
     };
 
     useEffect(() => {
+        // Manually trigger the scroll event to mark the default section active
         handleScroll();
+
+        // Register the event listener
         window.addEventListener("scroll", handleScroll);
+
         return () => {
+            // Cleanup the event listener
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
     const drawer = (
         <>
+            {/* Icon and profile name */}
             <Box
-                onClick={() => { window.location.href = "/"}}
+                onClick={() => {
+                    window.location.href = "/";
+                }}
                 sx={{
                     padding: "1rem",
                     display: "flex",
                     flexDirection: "column",
                     gap: 1,
-                    alignItems: "center"
+                    alignItems: "center",
                 }}
             >
-                <img src={logo} alt="Logo" style={{ width: "80%", display: isMobile ? "none" : "block", }} />
+                <img
+                    src={logo}
+                    alt="Logo"
+                    style={{ width: "80%", display: isMobile ? "none" : "block" }}
+                />
                 <Box>
-                    <Typography component="p" variant="overline" textAlign="center" sx={{ color: theme.palette.background.light, lineHeight: "normal" }}>
+                    <Typography
+                        component="p"
+                        variant="overline"
+                        textAlign="center"
+                        sx={{ color: theme.palette.background.light, lineHeight: "normal" }}
+                    >
                         <strong>{PROFILE_DETAILS.fullName}</strong>
                     </Typography>
-                    <Typography component="p" variant="caption" textAlign="center" sx={{color: theme.palette.background.light}}>
+                    <Typography
+                        component="p"
+                        variant="caption"
+                        textAlign="center"
+                        sx={{ color: theme.palette.background.light }}
+                    >
                         <strong>{PROFILE_DETAILS.occupation}</strong>
                     </Typography>
                 </Box>
             </Box>
-            
+
             <Divider />
 
+            {/* Navigation links */}
             <List>
                 {PAGE_SECTIONS.map((section) => (
                     <ListItem
@@ -102,7 +138,7 @@ const NavigationBar = (props) => {
 
             <Divider />
 
-            <Button variant="contained" color="primary" sx={{ margin: "10px" }}>
+            <Button variant="contained" onClick={handleCvDownload} sx={{ margin: "10px" }}>
                 Download CV
             </Button>
         </>
@@ -114,7 +150,11 @@ const NavigationBar = (props) => {
                 <>
                     <AppBar position="fixed">
                         <Toolbar>
-                            <img src={logo} alt="Logo" style={{ width: 80, padding: "10px", marginRight: "auto" }} />
+                            <img
+                                src={logo}
+                                alt="Logo"
+                                style={{ width: 80, padding: "10px", marginRight: "auto" }}
+                            />
                             <IconButton
                                 edge="end"
                                 color="inherit"
@@ -125,11 +165,7 @@ const NavigationBar = (props) => {
                             </IconButton>
                         </Toolbar>
                     </AppBar>
-                    <Drawer
-                        anchor="right"
-                        open={mobileOpen}
-                        onClose={handleDrawerToggle}
-                    >
+                    <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
                         {drawer}
                     </Drawer>
                 </>
@@ -137,16 +173,19 @@ const NavigationBar = (props) => {
                 <Drawer
                     variant="permanent"
                     sx={{
-                        flexShrink: 0
+                        flexShrink: 0,
                     }}
                 >
                     {drawer}
                 </Drawer>
             )}
-            <Box sx={{
-                marginLeft: `${!isMobile ? drawerWidth : 0}px`,
-                marginTop: `${isMobile ? 5 : 0}rem`
-            }}>
+
+            <Box
+                sx={{
+                    marginLeft: `${!isMobile ? drawerWidth : 0}px`,
+                    marginTop: `${isMobile ? 5 : 0}rem`,
+                }}
+            >
                 {props.children}
             </Box>
         </>

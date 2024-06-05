@@ -15,11 +15,9 @@ const SkillPercentageComp = ({ skillName, skillPercentage }) => {
             <Typography variant="body1" textAlign="right" sx={{ flex: "0 0 25%" }}>
                 {skillName}
             </Typography>
-            <LinearProgress
-                variant="determinate"
-                value={skillPercentage}
-                sx={{ flex: 1 }}
-            />
+
+            <LinearProgress variant="determinate" value={skillPercentage} sx={{ flex: 1 }} />
+
             <Typography variant="body2" textAlign="left" sx={{ flex: "0 0 50px" }}>
                 {Math.round(skillPercentage)}%
             </Typography>
