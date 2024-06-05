@@ -7,6 +7,7 @@ import { getNumYears } from "../utilities/generalHelper";
 import LogoImg from "../assets/logos/logo.png";
 import ResumeCardImg from "../assets/images/resume_card.png";
 import ResumePreviewImg from "../assets/images/resume_preview.png";
+import Testimonials from "../page_sections/Testimonials";
 
 export const PAGE_SECTIONS = [
     {
@@ -25,10 +26,15 @@ export const PAGE_SECTIONS = [
         component: <Projects />,
     },
     {
-        id: "contact",
-        displayText: "Contact",
-        component: <Contact />,
+        id: "testimonials",
+        displayText: "Testimonials",
+        component: <Testimonials />,
     },
+    // {
+    //     id: "contact",
+    //     displayText: "Contact",
+    //     component: <Contact />,
+    // },
 ];
 
 export const PROFILE_DETAILS = {
@@ -129,6 +135,20 @@ export const PROFILE_DETAILS = {
             cardBackgroundImg: ResumeCardImg,
             logoImg: LogoImg,
             previewImg: ResumePreviewImg,
+        },
+    ],
+    testimonials: [
+        {
+            name: "Cedric Tyler",
+            title: "CEO",
+            testimony:
+                "Highly regarded by Management and technical IT staff for his strong work ethic and positive values. He always delivers as advertised, possesses a sound grasp of complex situations, and has consistently exceeded company expectations",
+        },
+        {
+            name: "Robert Morris",
+            title: "Project Manager",
+            testimony:
+                "Willie is an incredibly proficient software developer with a rare combination of technical expertise, problem-solving abilities, and a keen eye for detail. He is an excellent collaborator and team player who consistently delivers high-quality software solutions and exceeds expectations.",
         },
     ],
 };
