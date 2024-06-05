@@ -17,6 +17,8 @@ import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { PAGE_SECTIONS, PROFILE_DETAILS } from "../constants/appData";
 import logo from "../assets/logos/logo.png";
+import CvFile from "../assets/documents/CV & References Willie Swanepoel.pdf";
+import Footer from "./Footer";
 
 const drawerWidth = 250;
 
@@ -32,7 +34,12 @@ const NavigationBar = (props) => {
     };
 
     const handleCvDownload = () => {
-        console.log("download CV");
+        const link = document.createElement("a");
+        link.href = CvFile;
+        link.download = "CV & References Willie Swanepoel.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     const handleScroll = () => {
@@ -138,6 +145,18 @@ const NavigationBar = (props) => {
 
             <Divider />
 
+            <Typography variant="caption" textAlign="center" px={1} pt={2} gutterBottom>
+                <i>
+                    "Your <strong>attitude</strong>, not your <strong>aptitude</strong>, will
+                    determine your <strong>altitude</strong>"
+                </i>
+            </Typography>
+            <Typography variant="caption" textAlign="center" px={1} pb={2}>
+                ~ Zig Ziglar
+            </Typography>
+
+            <Divider />
+
             <Button variant="contained" onClick={handleCvDownload} sx={{ margin: "10px" }}>
                 Download CV
             </Button>
@@ -187,6 +206,7 @@ const NavigationBar = (props) => {
                 }}
             >
                 {props.children}
+                <Footer />
             </Box>
         </>
     );
