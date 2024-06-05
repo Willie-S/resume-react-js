@@ -24,7 +24,10 @@ import SchoolIcon from "@mui/icons-material/School";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import { PROFILE_DETAILS } from "../constants/appData";
 import ProfileImg from "../assets/avatars/real_profile.png";
+import SectionTitle from "../components/SectionTitle";
+import SectionHeading from "../components/SectionHeading";
 import SkillPercentageComp from "../components/SkillPercentageComp";
+import InLineLinkComp from "../components/InLineLinkComp";
 
 const About = () => {
     const theme = useTheme();
@@ -113,11 +116,7 @@ const About = () => {
 
     return (
         <section id="about" style={{ padding: "20px", minHeight: "100vh" }}>
-            <Box sx={{ textAlign: "-webkit-center" }}>
-                <Typography component="h2" variant="h4" className="sectionTitle">
-                    About
-                </Typography>
-            </Box>
+            <SectionTitle title={"About"} />
 
             {/* Info cards */}
             <Grid
@@ -168,9 +167,8 @@ const About = () => {
                     <img src={ProfileImg} alt="Profile" style={{ width: "100%" }} />
                 </Box>
                 <Box sx={{ flex: 1 }}>
-                    <Typography component="h3" variant="h5" className="sectionHeading" gutterBottom>
-                        My Journey
-                    </Typography>
+                    <SectionHeading heading={"My Journey"} textAlign="left" gutterBottom />
+
                     <Typography variant="body2" sx={{ textAlign: "justify" }}>
                         My passion for coding began early when I snagged the second prize at the
                         NMMU IT expo in my matric year. Even though my career started off as an
@@ -212,44 +210,39 @@ const About = () => {
                 ))}
             </Box> */}
 
+            {/* Skills matrix */}
             <Box sx={{ margin: "0 auto" }}>
-                <Typography
-                    component="h3"
-                    variant="h5"
-                    className="sectionHeading"
-                    textAlign="center"
-                >
-                    Skills Matrix
-                </Typography>
+                <SectionHeading heading={"Skills Matrix"} />
+
                 <Typography component="p" variant="body1" my={2}>
                     Below are my self-assessed
-                    <Link
-                        component="button"
-                        variant="body1"
-                        onClick={handleOpenProficiency}
-                        sx={{ color: "primary.main", textTransform: "none", mx: 0.5 }}
-                    >
+                    <InLineLinkComp onClickHandler={handleOpenProficiency}>
                         proficiency levels
-                    </Link>
+                    </InLineLinkComp>
                     for various technologies I have experience in. To ensure objectivity, I have
                     evaluated each skill based on a consistent set of
-                    <Link
-                        component="button"
-                        variant="body1"
-                        onClick={handleOpenCriteria}
-                        sx={{ color: "primary.main", textTransform: "none", ml: 0.5 }}
-                    >
-                        criteria.
-                    </Link>
+                    <InLineLinkComp onClickHandler={handleOpenCriteria}>criteria.</InLineLinkComp>
                 </Typography>
+
                 <Grid container spacing={2} alignItems="center">
                     {PROFILE_DETAILS.skills
-                        .sort((a, b) => a.category.order - b.category.order || a.skillName.localeCompare(b.skillName))
+                        .sort(
+                            (a, b) =>
+                                a.category.order - b.category.order ||
+                                a.skillName.localeCompare(b.skillName)
+                        )
                         .reduce((acc, skill, index, array) => {
-                            if (index === 0 || skill.category.name !== array[index - 1].category.name) {
+                            if (
+                                index === 0 ||
+                                skill.category.name !== array[index - 1].category.name
+                            ) {
                                 acc.push(
                                     <Grid key={skill.category.name} item xs={12}>
-                                        <Typography component="h6" variant="overline" textAlign="center">
+                                        <Typography
+                                            component="h6"
+                                            variant="overline"
+                                            textAlign="center"
+                                        >
                                             {skill.category.name}
                                         </Typography>
                                     </Grid>
@@ -264,8 +257,7 @@ const About = () => {
                                 </Grid>
                             );
                             return acc;
-                        }, [])
-                    }
+                        }, [])}
                 </Grid>
             </Box>
 
