@@ -27,6 +27,7 @@ import SectionTitle from "../components/SectionTitle";
 import SectionHeading from "../components/SectionHeading";
 import SkillPercentageComp from "../components/SkillPercentageComp";
 import InLineLinkComp from "../components/InLineLinkComp";
+import ViewButtonComp from "../components/ViewButtonComp";
 
 const About = () => {
     const theme = useTheme();
@@ -222,6 +223,20 @@ const About = () => {
                     evaluated each skill based on a consistent set of
                     <InLineLinkComp onClickHandler={handleOpenCriteria}>criteria.</InLineLinkComp>
                 </Typography>
+
+                <Box
+                    sx={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-end",
+                    }}
+                >
+                    <ViewButtonComp onClick={handleOpenProficiency}>
+                        View Proficiency Levels
+                    </ViewButtonComp>
+                    <ViewButtonComp onClick={handleOpenCriteria}>View Criteria</ViewButtonComp>
+                </Box>
 
                 <Grid container spacing={2} alignItems="center">
                     {PROFILE_DETAILS.skills
