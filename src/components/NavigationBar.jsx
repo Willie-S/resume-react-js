@@ -20,6 +20,7 @@ import { PAGE_SECTIONS, PROFILE_DETAILS } from "../constants/appData";
 import Footer from "./Footer";
 import logo from "../assets/logos/logo.png";
 import CvFile from "../assets/documents/CV & References Willie Swanepoel.pdf";
+import HideOnScroll from "./HideOnScrollWrapper";
 
 const drawerWidth = 250;
 
@@ -139,6 +140,7 @@ const NavigationBar = (props) => {
                         key={section.id}
                         component="a"
                         href={`/#${section.id}`}
+                        onClick={handleDrawerToggle}
                         className={activeSection === section.id ? "active" : ""}
                     >
                         <ListItemText primary={section.displayText} />
@@ -193,23 +195,25 @@ const NavigationBar = (props) => {
         <>
             {isMobile ? (
                 <>
-                    <AppBar position="fixed">
-                        <Toolbar>
-                            <img
-                                src={logo}
-                                alt="Logo"
-                                style={{ width: 80, padding: "10px", marginRight: "auto" }}
-                            />
-                            <IconButton
-                                edge="end"
-                                color="inherit"
-                                aria-label="menu"
-                                onClick={handleDrawerToggle}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                        </Toolbar>
-                    </AppBar>
+                    <HideOnScroll>
+                        <AppBar position="fixed">
+                            <Toolbar>
+                                <img
+                                    src={logo}
+                                    alt="Logo"
+                                    style={{ width: 80, padding: "10px", marginRight: "auto" }}
+                                />
+                                <IconButton
+                                    edge="end"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    onClick={handleDrawerToggle}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                            </Toolbar>
+                        </AppBar>
+                    </HideOnScroll>
                     <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
                         {drawer}
                     </Drawer>
@@ -228,7 +232,7 @@ const NavigationBar = (props) => {
             <Box
                 sx={{
                     marginLeft: `${!isMobile ? drawerWidth : 0}px`,
-                    marginTop: `${isMobile ? 5 : 0}rem`,
+                    paddingTop: `${isMobile ? 5 : 0}rem`,
                 }}
             >
                 {props.children}

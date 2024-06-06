@@ -121,6 +121,18 @@ const customTheme = createTheme({
                 paper: {
                     backgroundColor: blueGrey,
                     borderRadius: "1rem",
+                    "&.fullMode": {
+                        backgroundColor: "transparent",
+                        backgroundImage: "none",
+                    },
+                    "&.MuiDialog-paper": {
+                        "&.fullMode": {
+                            [breakpoints.down("md")]: {
+                                margin: "1rem",
+                                width: "calc(100% - 1rem)",
+                            },
+                        },
+                    },
                 },
             },
         },
@@ -181,6 +193,9 @@ const customTheme = createTheme({
                 root: {
                     "&.noWrap": {
                         whiteSpace: "nowrap",
+                    },
+                    [breakpoints.down("md")]: {
+                        padding: "0.5rem",
                     },
                 },
                 head: {

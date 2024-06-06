@@ -6,7 +6,13 @@ const InLineLinkComp = ({ onClickHandler, ...props }) => {
             component="button"
             variant="body1"
             onClick={onClickHandler}
-            sx={{ color: "primary.main", textTransform: "none", mx: 0.5 }}
+            {...props}
+            sx={{
+                color: "primary.main",
+                textTransform: "none",
+                mx: 0.5,
+                ...props.sx,
+            }}
         >
             {props.children}
         </Link>

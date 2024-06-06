@@ -181,3 +181,88 @@ export const PROFILE_DETAILS = {
         },
     ],
 };
+
+export const SKILLS_CRITERIA = {
+    columns: [
+        { name: "criteria", displayText: "Criteria" },
+        { name: "description", displayText: "Description" },
+    ],
+    rows: [
+        {
+            criteria: "Years of Experience",
+            description: "How long have you been working with the technology?",
+        },
+        {
+            criteria: "Project Complexity",
+            description:
+                "What types of projects have you completed using the technology? Consider the complexity and scope.",
+        },
+        {
+            criteria: "Frequency of Use",
+            description: "How often do you use the technology in your daily work?",
+        },
+        {
+            criteria: "Depth of Knowledge",
+            description: "How well do you understand the core concepts and advanced features?",
+        },
+        {
+            criteria: "Problem-Solving Ability",
+            description: "Can you solve complex problems and troubleshoot issues independently?",
+        },
+        {
+            criteria: "Community Contribution",
+            description:
+                "Have you contributed to the technology’s community, such as through openCriteria-source projects, forums, or tutorials?",
+        },
+    ],
+};
+
+export const SKILLS_PROFICIENCY_LEVELS = {
+    columns: [
+        { name: "level", displayText: "Level", hideForMobile: false, showToolTip: false },
+        {
+            name: "proficiency",
+            displayText: "Proficiency",
+            hideForMobile: false,
+            showToolTip: true,
+        },
+        {
+            name: "description",
+            displayText: "Description",
+            hideForMobile: true,
+            showToolTip: false,
+        },
+    ],
+    rows: [
+        {
+            level: "1 - 20%",
+            proficiency: "Novice",
+            description:
+                "Just started learning the technology. Basic understanding and ability to write simple code.",
+        },
+        {
+            level: "21 - 40%",
+            proficiency: "Beginner",
+            description:
+                "Some experience with the technology. Can write more complex code but still relies heavily on documentation and guidance.",
+        },
+        {
+            level: "41 - 60%",
+            proficiency: "Intermediate",
+            description:
+                "Comfortable with the technology. Can build complete applications, solve most problems independently, and understand core concepts well.",
+        },
+        {
+            level: "61 - 80%",
+            proficiency: "Advanced",
+            description:
+                "Extensive experience with the technology. Can optimize and refactor code, understands advanced concepts, and can mentor others.",
+        },
+        {
+            level: "81 - 100%",
+            proficiency: "Expert",
+            description:
+                "Deep expertise and mastery. Can design and architect complex systems, contribute to the technology's community, and innovate within the field.",
+        },
+    ],
+};

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
     Box,
-    Button,
     Card,
     CardContent,
     Dialog,
-    DialogContent,
-    DialogActions,
+    Fade,
     Grid,
     Paper,
     Table,
@@ -17,11 +15,15 @@ import {
     TableContainer,
     Typography,
     useTheme,
+    useMediaQuery,
+    Tooltip,
 } from "@mui/material";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import SchoolIcon from "@mui/icons-material/School";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
-import { PROFILE_DETAILS } from "../constants/appData";
+import CloseIcon from "@mui/icons-material/Close";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { PROFILE_DETAILS, SKILLS_CRITERIA, SKILLS_PROFICIENCY_LEVELS } from "../constants/appData";
 import ProfileImg from "../assets/avatars/about.png";
 import SectionTitle from "../components/SectionTitle";
 import SectionHeading from "../components/SectionHeading";
@@ -31,6 +33,7 @@ import ViewButtonComp from "../components/ViewButtonComp";
 
 const About = () => {
     const theme = useTheme();
+    const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
     const [visibleKeywords, setVisibleKeywords] = useState([]);
     const [openCriteria, setOpenCriteria] = useState(false);
     const [openProficiency, setOpenProficiency] = useState(false);
@@ -214,14 +217,16 @@ const About = () => {
             <Box sx={{ margin: "0 auto" }}>
                 <SectionHeading heading={"Skills Matrix"} />
 
-                <Typography component="p" variant="body1" my={2}>
+                <Typography component="p" variant="body1" textAlign="justify" my={2}>
                     Below are my self-assessed
-                    <InLineLinkComp onClickHandler={handleOpenProficiency}>
+                    <InLineLinkComp component="span" onClickHandler={handleOpenProficiency}>
                         proficiency levels
                     </InLineLinkComp>
                     for various technologies I have experience in. To ensure objectivity, I have
                     evaluated each skill based on a consistent set of
-                    <InLineLinkComp onClickHandler={handleOpenCriteria}>criteria.</InLineLinkComp>
+                    <InLineLinkComp component="span" onClickHandler={handleOpenCriteria}>
+                        criteria.
+                    </InLineLinkComp>
                 </Typography>
 
                 <Box
@@ -276,129 +281,110 @@ const About = () => {
             </Box>
 
             {/* Modal for Criteria */}
-            <Dialog open={openCriteria} onClose={handleCloseCriteria} maxWidth="md" fullWidth>
-                <DialogContent dividers>
-                    <TableContainer component={Paper}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Criteria</TableCell>
-                                    <TableCell>Description</TableCell>
+            <Dialog
+                PaperProps={{ className: "fullMode" }}
+                open={openCriteria}
+                onClose={handleCloseCriteria}
+                maxWidth="md"
+                fullWidth
+            >
+                <CloseIcon
+                    onClick={handleCloseCriteria}
+                    color="primary"
+                    sx={{ alignSelf: "flex-end" }}
+                />
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                {SKILLS_CRITERIA.columns.map((col, i) => (
+                                    <TableCell key={i}>{col.displayText}</TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {SKILLS_CRITERIA.rows.map((row, r) => (
+                                <TableRow key={r}>
+                                    {SKILLS_CRITERIA.columns.map((col, c) => (
+                                        <TableCell key={`${r}${c}`}>{row[col.name]}</TableCell>
+                                    ))}
                                 </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>Years of Experience</TableCell>
-                                    <TableCell>
-                                        How long have you been working with the technology?
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Project Complexity</TableCell>
-                                    <TableCell>
-                                        What types of projects have you completed using the
-                                        technology? Consider the complexity and scope.
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Frequency of Use</TableCell>
-                                    <TableCell>
-                                        How often do you use the technology in your daily work?
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Depth of Knowledge</TableCell>
-                                    <TableCell>
-                                        How well do you understand the core concepts and advanced
-                                        features?
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Problem-Solving Ability</TableCell>
-                                    <TableCell>
-                                        Can you solve complex problems and troubleshoot issues
-                                        independently?
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Community Contribution</TableCell>
-                                    <TableCell>
-                                        Have you contributed to the technology’s community, such as
-                                        through openCriteria-source projects, forums, or tutorials?
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseCriteria}>Close</Button>
-                </DialogActions>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Dialog>
 
             {/* Modal for Proficiency */}
-            <Dialog open={openProficiency} onClose={handleCloseProficiency} maxWidth="md" fullWidth>
-                <DialogContent dividers>
-                    <TableContainer component={Paper}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Level</TableCell>
-                                    <TableCell>Proficiency</TableCell>
-                                    <TableCell>Description</TableCell>
+            <Dialog
+                PaperProps={{ className: "fullMode" }}
+                open={openProficiency}
+                onClose={handleCloseProficiency}
+                maxWidth="md"
+                fullWidth
+            >
+                <CloseIcon
+                    onClick={handleCloseProficiency}
+                    color="primary"
+                    sx={{ alignSelf: "flex-end" }}
+                />
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                {SKILLS_PROFICIENCY_LEVELS.columns.map((col, i) => {
+                                    return col.hideForMobile && isMobile ? null : (
+                                        <TableCell key={i} hidden={col.hideForMobile && isMobile}>
+                                            {col.displayText}
+                                        </TableCell>
+                                    );
+                                })}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {SKILLS_PROFICIENCY_LEVELS.rows.map((row, r) => (
+                                <TableRow key={r}>
+                                    {SKILLS_PROFICIENCY_LEVELS.columns.map((col, c) => {
+                                        return col.hideForMobile && isMobile ? null : (
+                                            <TableCell
+                                                key={`${r}${c}`}
+                                                className={c === 0 ? "noWrap" : ""}
+                                            >
+                                                {row[col.name]}
+                                                {col.showToolTip && isMobile && (
+                                                    <Tooltip
+                                                        TransitionComponent={Fade}
+                                                        TransitionProps={{ timeout: 600 }}
+                                                        enterTouchDelay={0}
+                                                        leaveTouchDelay={5000}
+                                                        arrow
+                                                        title={
+                                                            row[
+                                                                SKILLS_PROFICIENCY_LEVELS.columns.find(
+                                                                    (c) => c.hideForMobile
+                                                                ).name
+                                                            ]
+                                                        }
+                                                    >
+                                                        <HelpOutlineIcon
+                                                            fontSize="small"
+                                                            sx={{
+                                                                color: theme.palette.background
+                                                                    .light,
+                                                                verticalAlign: "bottom",
+                                                                float: "right",
+                                                            }}
+                                                        />
+                                                    </Tooltip>
+                                                )}
+                                            </TableCell>
+                                        );
+                                    })}
                                 </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell className="noWrap">1 - 20%</TableCell>
-                                    <TableCell>Novice</TableCell>
-                                    <TableCell>
-                                        Just started learning the technology. Basic understanding
-                                        and ability to write simple code.
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell className="noWrap">21 - 40%</TableCell>
-                                    <TableCell>Beginner</TableCell>
-                                    <TableCell>
-                                        Some experience with the technology. Can write more complex
-                                        code but still relies heavily on documentation and guidance.
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell className="noWrap">41 - 60%</TableCell>
-                                    <TableCell>Intermediate</TableCell>
-                                    <TableCell>
-                                        Comfortable with the technology. Can build complete
-                                        applications, solve most problems independently, and
-                                        understand core concepts well.
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell className="noWrap">61 - 80%</TableCell>
-                                    <TableCell>Advanced</TableCell>
-                                    <TableCell>
-                                        Extensive experience with the technology. Can optimize and
-                                        refactor code, understands advanced concepts, and can mentor
-                                        others.
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell className="noWrap">81 - 100%</TableCell>
-                                    <TableCell>Expert</TableCell>
-                                    <TableCell>
-                                        Deep expertise and mastery. Can design and architect complex
-                                        systems, contribute to the technology's community, and
-                                        innovate within the field.
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseProficiency}>Close</Button>
-                </DialogActions>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Dialog>
         </section>
     );
