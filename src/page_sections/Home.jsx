@@ -17,7 +17,9 @@ const Home = () => {
         <section
             id="home"
             style={{
+                maxWidth: "unset",
                 minHeight: isMobile ? "calc(100vh - 5rem)" : "100vh",
+                margin: "unset",
                 backgroundImage: `linear-gradient(${backdropColor}cc, ${backdropColor}cc), url(${BackgroundImg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",

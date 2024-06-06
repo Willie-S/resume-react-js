@@ -94,6 +94,7 @@ const ProjectCard = ({ project, reverse = false }) => {
                             href={project.url}
                             target="_blank"
                             rel="noopener noreferrer"
+                            disabled={!project.url}
                         >
                             View Project
                         </ViewButtonComp>
@@ -101,6 +102,7 @@ const ProjectCard = ({ project, reverse = false }) => {
                             href={project.repoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            disabled={!project.repoUrl}
                         >
                             View Repository
                         </ViewButtonComp>

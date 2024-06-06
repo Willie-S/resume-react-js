@@ -7,7 +7,7 @@ import TestimonyCard from "../components/TestimonyCard";
 
 const Testimonials = () => {
     return (
-        <section id="testimonials" style={{ padding: "20px", height: "100vh" }}>
+        <section id="testimonials">
             <SectionTitle title={"Testimonials"} />
 
             {/* Testimonials carousel container */}

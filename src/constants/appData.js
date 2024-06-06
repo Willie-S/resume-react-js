@@ -4,11 +4,13 @@ import About from "../page_sections/About";
 import Contact from "../page_sections/Contact";
 import Home from "../page_sections/Home";
 import Projects from "../page_sections/Projects";
+import Testimonials from "../page_sections/Testimonials";
 import { getNumYears } from "../utilities/generalHelper";
 import LogoImg from "../assets/logos/logo.png";
 import ResumeCardImg from "../assets/images/resume_card.png";
 import ResumePreviewImg from "../assets/images/resume_preview.png";
-import Testimonials from "../page_sections/Testimonials";
+import TopSecretImg from "../assets/images/top-secret.png";
+import AccessDeniedImg from "../assets/images/access_denied.jpg";
 
 export const PAGE_SECTIONS = [
     {
@@ -54,8 +56,22 @@ export const PROFILE_DETAILS = {
         durationDeveloper: getNumYears(2017, false),
     },
     onlineCourses: {
-        total: 10,
-        names: ["course 1"],
+        totalCourses: 12,
+        totalHours: 43,
+        names: [
+            "Complete Web Developer (Udemy)",
+            "Mobile and Web Development with React and React Native (Udemy)",
+            "React Testing Library with Jest/Vitest (Udemy)",
+            "Knockout JS from scratch (Udemy)",
+            "Unit Testing for C# Developers (Udemy)",
+            "Implementing NoSQL Databases in Microsoft Azure (Pluralsight)",
+            "Managing Data Security and Policy in Microsoft Azure (Pluralsight)",
+            "Securing Access to Microsoft Azure Storage (Pluralsight)",
+            "Securing Access to Microsoft Azure Databases (Pluralsight)",
+            "Implementing Data Continuity and Availability in Microsoft Azure (Pluralsight)",
+            "Securing Microsoft Azure Data Access Endpoints (Pluralsight)",
+            "Selecting an Appropriate Data Storage Service in Microsoft Azure (Pluralsight)",
+        ],
     },
     links: [
         {
@@ -127,7 +143,7 @@ export const PROFILE_DETAILS = {
                 "It's a single-page ReactJS web application built with Material UI to build up my portfolio as a software developer.",
                 "At the time of its creation, it's purely a frontend application with static assets and profile details. However, to showcase my abilities as a fullstack developer (as advertised), I will be moving all the static details into a database and create a backend API to fetch the data.",
             ],
-            url: "https://localhost:3000",
+            url: "https://d2txmxud4jwlne.cloudfront.net",
             repoUrl: "https://github.com/Willie-S/resume-react-js",
             repoIcon: <GitHubIcon />,
             cardBackgroundImg: ResumeCardImg,
@@ -135,19 +151,19 @@ export const PROFILE_DETAILS = {
             previewImg: ResumePreviewImg,
         },
         {
-            projectName: "Resumé ME",
-            descShort: "A personal portfolio site written in ReactJS with Material-UI",
+            projectName: "Client Projects",
+            descShort: "Various projects for the clients of past employers",
             descriptions: [
-                "Well, you know, it's this exact application...",
-                "It's a single-page ReactJS web application built with Material UI to build up my portfolio as a software developer.",
-                "At the time of its creation, it's purely a frontend application with static assets and profile details. However, to showcase my abilities as a fullstack developer (as advertised), I will be moving all the static details into a database and create a backend API to fetch the data.",
+                "Without going into much detail, I contributed to quite a number of projects.",
+                "Unfortunately I cannot provide the links to the repositories or actual applications due to client privacy and POPI.",
+                "The majority of these projects involved fullstack development with ReactJS & MUI at the frontend and ASP.Net at the backend.",
             ],
-            url: "https://localhost:3000",
-            repoUrl: "https://github.com/Willie-S/resume-react-js",
+            url: "",
+            repoUrl: "",
             repoIcon: <GitHubIcon />,
-            cardBackgroundImg: ResumeCardImg,
-            logoImg: LogoImg,
-            previewImg: ResumePreviewImg,
+            cardBackgroundImg: TopSecretImg,
+            logoImg: TopSecretImg,
+            previewImg: AccessDeniedImg,
         },
     ],
     testimonials: [

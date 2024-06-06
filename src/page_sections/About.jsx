@@ -22,7 +22,7 @@ import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import SchoolIcon from "@mui/icons-material/School";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import { PROFILE_DETAILS } from "../constants/appData";
-import ProfileImg from "../assets/avatars/real_profile.png";
+import ProfileImg from "../assets/avatars/about.png";
 import SectionTitle from "../components/SectionTitle";
 import SectionHeading from "../components/SectionHeading";
 import SkillPercentageComp from "../components/SkillPercentageComp";
@@ -109,13 +109,13 @@ const About = () => {
         },
         {
             icon: <ImportContactsIcon className="icon" />,
-            title: "Online Courses",
-            description: `Completed over ${PROFILE_DETAILS.onlineCourses.total} online courses to enhance my skills.`,
+            title: "Online Training",
+            description: `Viewied countless YouTube tutorials. Completed over ${PROFILE_DETAILS.onlineCourses.totalCourses} online courses, exceeding ${PROFILE_DETAILS.onlineCourses.totalHours} hours.`,
         },
     ];
 
     return (
-        <section id="about" style={{ padding: "20px", minHeight: "100vh" }}>
+        <section id="about">
             <SectionTitle title={"About"} />
 
             {/* Info cards */}

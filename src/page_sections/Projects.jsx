@@ -6,7 +6,7 @@ import { PROFILE_DETAILS } from "../constants/appData";
 
 const Projects = () => {
     return (
-        <section id="projects" style={{ padding: "20px", minHeight: "100vh" }}>
+        <section id="projects">
             <SectionTitle title={"Projects"} />
 
             {/* Projects container */}
