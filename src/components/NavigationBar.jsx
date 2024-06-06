@@ -6,6 +6,7 @@ import {
     Divider,
     Drawer,
     IconButton,
+    Link,
     List,
     ListItem,
     ListItemText,
@@ -16,9 +17,9 @@ import {
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { PAGE_SECTIONS, PROFILE_DETAILS } from "../constants/appData";
+import Footer from "./Footer";
 import logo from "../assets/logos/logo.png";
 import CvFile from "../assets/documents/CV & References Willie Swanepoel.pdf";
-import Footer from "./Footer";
 
 const drawerWidth = 250;
 
@@ -59,7 +60,9 @@ const NavigationBar = (props) => {
             const element = document.getElementById(sectionId);
             if (element) {
                 const { offsetTop, offsetHeight } = element;
-                const threshold = isScrollingDown ? offsetHeight / 3 : (offsetHeight * 2) / 3;
+                const threshold = isScrollingDown
+                    ? window.innerHeight / 3
+                    : (window.innerHeight * 2) / 3;
 
                 if (
                     currentScrollY >= offsetTop - threshold &&
@@ -145,21 +148,44 @@ const NavigationBar = (props) => {
 
             <Divider />
 
-            <Typography variant="caption" textAlign="center" px={1} pt={2} gutterBottom>
-                <i>
-                    "Your <strong>attitude</strong>, not your <strong>aptitude</strong>, will
-                    determine your <strong>altitude</strong>"
-                </i>
-            </Typography>
-            <Typography variant="caption" textAlign="center" px={1} pb={2}>
-                ~ Zig Ziglar
-            </Typography>
+            {/* A powerful quote I enjoy */}
+            <Box my={2} mx={1}>
+                <Typography component="p" variant="caption" textAlign="center" gutterBottom>
+                    <i>
+                        "Your <strong>attitude</strong>, not your <strong>aptitude</strong>, will
+                        determine your <strong>altitude</strong>"
+                    </i>
+                </Typography>
+                <Typography component="p" variant="caption" textAlign="center">
+                    ~ Zig Ziglar
+                </Typography>
+            </Box>
 
             <Divider />
 
-            <Button variant="contained" onClick={handleCvDownload} sx={{ margin: "10px" }}>
+            {/* CV download button */}
+            <Button variant="contained" onClick={handleCvDownload} sx={{ margin: "1rem 0.5rem" }}>
                 Download CV
             </Button>
+
+            <Divider />
+
+            {/* Various Links */}
+            <Box
+                sx={{
+                    margin: "1rem 0.5rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 2,
+                }}
+            >
+                {PROFILE_DETAILS.links.map((link, i) => (
+                    <Link key={i} href={link.url} target="_blank" rel="noopener noreferrer">
+                        {link.icon}
+                    </Link>
+                ))}
+            </Box>
         </>
     );
 

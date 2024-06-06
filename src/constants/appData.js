@@ -1,4 +1,5 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import About from "../page_sections/About";
 import Contact from "../page_sections/Contact";
 import Home from "../page_sections/Home";
@@ -56,6 +57,18 @@ export const PROFILE_DETAILS = {
         total: 10,
         names: ["course 1"],
     },
+    links: [
+        {
+            name: "LinkedIn",
+            url: "https://www.linkedin.com/in/willie-swanepoel-1725b2147/",
+            icon: <LinkedInIcon />,
+        },
+        {
+            name: "GitHub",
+            url: "https://github.com/Willie-S",
+            icon: <GitHubIcon />,
+        },
+    ],
     skills: [
         { skillName: "React", skillPercentage: 65, category: { order: 1, name: "Frontend" } },
         { skillName: "Material UI", skillPercentage: 65, category: { order: 1, name: "Frontend" } },
