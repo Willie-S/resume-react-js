@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+    install:
+        on-failure: ABORT
+        commands:
+            - apt-get update
+            - apt-get install -y yarn
+    pre_build:
+        on-failure: ABORT
+        commands:
+            - yarn
+    build:
+        on-failure: ABORT
+        commands:
+            - yarn run build --no-cache
+    post_build:
+        commands:
+            - aws s3 sync ./build s3://resume-react-js
+            - aws cloudfront create-invalidation --distribution-id E1GTFKRB7SSDS0 --paths '/*'
