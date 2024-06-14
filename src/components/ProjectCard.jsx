@@ -99,12 +99,20 @@ const ProjectCard = ({ project, reverse = false }) => {
                             View Project
                         </ViewButtonComp>
                         <ViewButtonComp
-                            href={project.repoUrl}
+                            href={project.repoUrlFrontend}
                             target="_blank"
                             rel="noopener noreferrer"
                             disabled={!project.repoUrl}
                         >
-                            View Repository
+                            View Repository (Frontend)
+                        </ViewButtonComp>
+                        <ViewButtonComp
+                            href={project.repoUrlBackend}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            disabled={!project.repoUrl}
+                        >
+                            View Repository (Backend)
                         </ViewButtonComp>
                     </Box>
                 </CardContent>
